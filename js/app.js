@@ -2,7 +2,7 @@
 // global var
 var imageName = ['num1', 'num2', 'num3', 'num4', 'num5', 'num6', 'num7', 'num8', 'num9'];
 var EMPTY_CARD = 'empty-card';
-var objArr = [];
+var numberClick = 0;
 var mainDiv = document.getElementById('container');
 mainDiv.addEventListener('click', whenClick);
 shuffle(imageName);
@@ -11,7 +11,6 @@ function CardPlay(image) {
   this.image = image;
   this.filePath = `img/${image}.png`;
   this.idCard = image.split('m')[1];
-  objArr.push(this);
 }
 
 function hello(){
@@ -46,6 +45,7 @@ function creatImage(card) {
 
 function whenClick(event) {
   event.preventDefault();
+  numberClick ++;
   var action = event.target.id;
   var newElement = document.getElementById(action);
   var cloneElemnt = newElement.cloneNode(true);
@@ -87,7 +87,7 @@ function whenClick(event) {
 
 function checkArray() {
   if (checkIfcorrect()) {
-    alert('Congratulations!');
+    alert(`Congratulations! and you click ${numberClick}`);
     shuffle(imageName);
     render();
   }
